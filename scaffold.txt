@@ -1,0 +1,42 @@
+job-matching-platform/
+├── backend/                   # FastAPI app (or Express.js if you go with Node)
+│   ├── app/
+│   │   ├── api/               # API route handlers
+│   │   ├── services/          # Matching, parsing, embedding logic
+│   │   ├── models/            # Pydantic models (schemas)
+│   │   ├── db/                # DB models & connection utils
+│   │   └── main.py            # FastAPI entrypoint
+│   ├── tests/
+│   └── requirements.txt
+│
+├── infrastructure/            # Terraform modules
+│   ├── main.tf                # AWS infra (S3, Lambda, API Gateway, etc.)
+│   ├── variables.tf
+│   └── outputs.tf
+│
+├── embeddings_service/        # Embedding & similarity logic (could be Lambda or ECS)
+│   ├── embed.py
+│   ├── scorer.py
+│   └── requirements.txt
+│
+├── resume_processor/          # Async resume parsing worker (triggered via SQS)
+│   ├── handler.py
+│   └── Dockerfile
+│
+├── job_data/                  # Scripts for scraping or loading job descriptions
+│   ├── fetch_jobs.py
+│   └── jobs.json
+│
+├── scripts/                   # Local utilities (dev/test)
+│   └── upload_sample_resume.py
+│
+├── frontend/                  # (Optional) React dashboard or mobile interface
+│   └── ...
+│
+├── .github/                   # GitHub Actions CI/CD
+│   └── workflows/
+│       └── deploy.yml
+│
+├── docker-compose.yml         # For local dev (DB, Redis, etc.)
+├── README.md
+└── Makefile                   # Common CLI commands
